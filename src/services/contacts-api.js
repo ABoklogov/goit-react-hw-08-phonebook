@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://lpj-tasker.herokuapp.com';
 
 export async function fetchContacts() {
   const { data } = await axios.get('/contacts');
@@ -11,6 +11,6 @@ export async function postContacts(contact) {
   await axios.post('/contacts', contact);
 }
 
-export async function deleteContacts(id) {
-  await axios.delete(`/contacts/${id}`);
+export async function deleteContacts(contactsId) {
+  await axios.delete(`/contacts/${contactsId}`);
 }
