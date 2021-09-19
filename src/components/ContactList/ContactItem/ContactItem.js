@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { contactsAction, contactsOperation } from 'redux/contacts';
+import { Button } from 'react-bootstrap';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number }) => {
@@ -15,9 +16,9 @@ const ContactItem = ({ id, name, number }) => {
     <>
       <p className={s.contactName}>{name}:</p>
       <p className={s.contactNumber}>{number}</p>
-      <button className={s.contactBtn} onClick={() => deleteContact(id)}>
+      <Button className={s.contactBtn} onClick={() => deleteContact(id)}>
         delete
-      </button>
+      </Button>
     </>
   );
 };

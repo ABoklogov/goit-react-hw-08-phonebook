@@ -7,8 +7,8 @@ export default function AppBar() {
   //   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <header className={s.header}>
-      <UserMenu />
       <AuthNav />
+      <UserMenu />
     </header>
   );
 }

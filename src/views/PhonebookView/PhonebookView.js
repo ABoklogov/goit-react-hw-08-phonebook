@@ -4,13 +4,14 @@ import { contactsSelectors } from 'redux/contacts';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
+import s from './PhonebookView.module.css';
 
 const PhonebookView = () => {
   const loading = useSelector(contactsSelectors.getLoading);
   const error = useSelector(contactsSelectors.getError);
 
   return (
-    <>
+    <div className={s.PhonebookView}>
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
@@ -18,7 +19,7 @@ const PhonebookView = () => {
       {loading && <h1>Loading...</h1>}
       {!loading && <ContactList />}
       {error && alert(error)}
-    </>
+    </div>
   );
 };
 
