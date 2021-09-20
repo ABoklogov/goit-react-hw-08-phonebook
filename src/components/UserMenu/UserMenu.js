@@ -11,7 +11,7 @@ export default function UserMenu() {
   return (
     <div className={s.container}>
       <img src={defaultAvatar} alt="" width="32" className={s.avatar} />
-      <span className={s.name}>Welcome, </span>
+      <span className={s.name}>user@mail.ru</span>
       <Button type="button" onClick={() => {}}>
         Log off
       </Button>

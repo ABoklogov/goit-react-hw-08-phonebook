@@ -7,10 +7,9 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <label>
-      Find contacts by name
+    <label className={s.sort}>
+      <span className={s.sortText}>Find contacts by name</span>
       <input
-        className={s.input}
         type="text"
         name="filter"
         value={filter}

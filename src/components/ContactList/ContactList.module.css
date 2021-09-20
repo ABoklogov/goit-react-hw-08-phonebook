@@ -1,7 +1,9 @@
 .contactList {
   max-width: 300px;
+  padding: 10px 20px;
 }
 
 .contact {
   display: flex;
+  padding: 4px;
 }
