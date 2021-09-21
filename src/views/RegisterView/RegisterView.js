@@ -1,7 +1,7 @@
-import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { Form, Button } from 'react-bootstrap';
 import s from './RegisterView.module.css';
 
 const RegisterView = () => {
@@ -53,9 +53,6 @@ const RegisterView = () => {
           onChange={handleChange}
           placeholder="Enter email"
         />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -66,13 +63,6 @@ const RegisterView = () => {
           value={password}
           onChange={handleChange}
           placeholder="Password"
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check
-          type="checkbox"
-          label="agree to the terms of registration"
         />
       </Form.Group>
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://lpj-tasker.herokuapp.com';
+// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 // export async function fetchContacts() {
 //   const { data } = await axios.get('/contacts');
@@ -14,9 +14,3 @@ axios.defaults.baseURL = 'https://lpj-tasker.herokuapp.com';
 // export async function deleteContacts(contactsId) {
 //   await axios.delete(`/contacts/${contactsId}`);
 // }
-
-// регистрация пользователя:
-export async function uathRegister(credentials) {
-  console.log(credentials);
-  await axios.post('/users/signup', credentials);
-}

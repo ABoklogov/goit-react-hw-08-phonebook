@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import * as contactsAPI from 'services/contacts-api';
+// import * as contactsAPI from 'services/contacts-api';
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
   set(token) {
@@ -11,16 +13,30 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('aurh/register', async credentials => {
-  const { data } = await contactsAPI.uathRegister(credentials);
-  token.set(data.token);
-  return data;
+const register = createAsyncThunk('auth/register', async credentials => {
+  try {
+    const { data } = await axios.post('/users/signup', credentials);
+    // token.set(data.token);
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+const logIn = createAsyncThunk('auth/login', async credentials => {
+  try {
+    const { data } = await axios.post('/users/login', credentials);
+    // token.set(data.token);
+    return data;
+  } catch (error) {
+    return error.message;
+  }
 });
 
 const operations = {
   register,
   // logOut,
-  // logIn,
+  logIn,
   // fetchCurrentUser,
 };
 export default operations;
