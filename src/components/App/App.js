@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { contactsOperation } from 'redux/contacts';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { contactsOperation } from 'redux/contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterView from 'views/RegisterView';
 import LoginView from 'views/LoginView';
@@ -11,17 +11,18 @@ import Container from 'components/Container';
 import AppBar from 'components/AppBar';
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(contactsOperation.fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(contactsOperation.fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container>
       <AppBar />
 
       <Switch>
+        <Route exact path="/" component={RegisterView} />
         <Route path="/register" component={RegisterView} />
         <Route path="/login" component={LoginView} />
         <Route path="/contacts" component={PhonebookView} />

@@ -11,7 +11,7 @@ const items = createReducer([], {
 
   [action.setContacts]: (_, { payload }) => [...payload],
 
-  // [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
 });
 
 const filter = createReducer('', {

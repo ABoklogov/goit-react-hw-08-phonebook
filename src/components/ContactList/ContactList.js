@@ -8,7 +8,7 @@ const ContactList = () => {
 
   return (
     <ul className={s.contactList}>
-      {visibleContacts.map(({ id, name, number }) => (
+      {visibleContacts?.map(({ id, name, number }) => (
         <li key={id} className={s.contact}>
           <ContactItem id={id} name={name} number={number} />
         </li>
