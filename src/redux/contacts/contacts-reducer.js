@@ -18,22 +18,22 @@ const filter = createReducer('', {
   [action.chengeFilter]: (_, { payload }) => payload,
 });
 
-// const isLoading = createReducer(false, {
-//   [fetchContacts.pending]: () => true,
-//   [fetchContacts.fulfilled]: () => false,
-//   [fetchContacts.rejected]: () => false,
-// });
+const isLoading = createReducer(false, {
+  [fetchContacts.pending]: () => true,
+  [fetchContacts.fulfilled]: () => false,
+  [fetchContacts.rejected]: () => false,
+});
 
-// const error = createReducer(null, {
-//   [fetchContacts.rejected]: () => 'error, lost connection with the server!',
-//   [fetchContacts.pending]: () => null,
-// });
+const error = createReducer(null, {
+  [fetchContacts.rejected]: () => 'error, lost connection with the server!',
+  [fetchContacts.pending]: () => null,
+});
 
 const contactsReducer = combineReducers({
   items,
   filter,
-  // isLoading,
-  // error,
+  isLoading,
+  error,
 });
 
 export default contactsReducer;
