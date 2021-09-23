@@ -1,21 +1,38 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-// import * as contactsAPI from 'services/contacts-api';
 import axios from 'axios';
+import {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+} from './contacts-action';
 
-export const fetchContacts = createAsyncThunk(
-  'contacts/requestStatus',
-  async () => {
+export const fetchContacts = () => async dispatch => {
+  dispatch(fetchContactRequest());
+  try {
     const { data } = await axios.get('/contacts');
-    return data;
-  },
-);
+    dispatch(fetchContactSuccess(data));
+  } catch (error) {
+    fetchContactError(error.message);
+  }
+};
 
-// export const postContact = createAsyncThunk(
-//   'contacts/requestStatus',
-//   async contact => await contactsAPI.postContacts(contact),
-// );
+export const postContact = contact => dispatch => {
+  dispatch(addContactRequest());
+  axios
+    .post('/contacts', contact)
+    .then(({ data }) => dispatch(addContactSuccess(data)))
+    .catch(error => addContactError(error.message));
+};
 
-// export const deletContacts = createAsyncThunk(
-//   'contacts/requestStatus',
-//   async id => await contactsAPI.deleteContacts(id),
-// );
+export const deletContacts = id => dispatch => {
+  dispatch(deleteContactRequest());
+  axios
+    .delete(`/contacts/${id}`)
+    .then(() => dispatch(deleteContactSuccess(id)))
+    .catch(error => dispatch(deleteContactError(error.message)));
+};

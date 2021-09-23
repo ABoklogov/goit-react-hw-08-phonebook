@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import shortid from 'shortid';
-import {
-  contactsAction,
-  contactsOperation,
-  contactsSelectors,
-} from 'redux/contacts';
+import { contactsOperation, contactsSelectors } from 'redux/contacts';
 import { Button } from 'react-bootstrap';
 import s from './ContactForm.module.css';
 
@@ -37,7 +32,6 @@ const ContactForm = () => {
     const newContact = {
       name,
       number,
-      id: shortid.generate(),
     };
     const checkingContacts = el => el.name.toLowerCase() === name.toLowerCase();
 
@@ -45,8 +39,6 @@ const ContactForm = () => {
       alert(`${name} is alreaby in contacts`);
       return;
     }
-
-    dispatch(contactsAction.addContact(newContact));
     dispatch(contactsOperation.postContact(newContact));
     setName('');
     setNumber('');
