@@ -1,7 +1,7 @@
 import { Switch } from 'react-router-dom';
 import { useEffect, Suspense, lazy } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authOperations, authSelectors } from 'redux/auth';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'components/Container';
 import AppBar from 'components/AppBar';
@@ -14,7 +14,6 @@ const PhonebookView = lazy(() => import('views/PhonebookView'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -26,7 +25,7 @@ const App = () => {
 
       <Switch>
         <Suspense fallback={<p>Loading...</p>}>
-          <PublicRoute exact path="/" redirectTo="/register">
+          <PublicRoute exact path="/" redirectTo="/register" restricted>
             <RegisterView />
           </PublicRoute>
 
