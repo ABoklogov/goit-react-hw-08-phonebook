@@ -1,17 +1,20 @@
-import { Switch, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import { contactsOperation } from 'redux/contacts';
+import { Switch } from 'react-router-dom';
+import { useEffect, Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from 'redux/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RegisterView from 'views/RegisterView';
-import LoginView from 'views/LoginView';
-import PhonebookView from 'views/PhonebookView';
-import { authOperations } from 'redux/auth';
 import Container from 'components/Container';
 import AppBar from 'components/AppBar';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
+
+const RegisterView = lazy(() => import('views/RegisterView'));
+const LoginView = lazy(() => import('views/LoginView'));
+const PhonebookView = lazy(() => import('views/PhonebookView'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -22,10 +25,23 @@ const App = () => {
       <AppBar />
 
       <Switch>
-        <Route exact path="/" component={RegisterView} />
-        <Route path="/register" component={RegisterView} />
-        <Route path="/login" component={LoginView} />
-        <Route path="/contacts" component={PhonebookView} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <PublicRoute exact path="/" redirectTo="/register">
+            <RegisterView />
+          </PublicRoute>
+
+          <PublicRoute path="/register" restricted>
+            <RegisterView />
+          </PublicRoute>
+
+          <PublicRoute path="/login" restricted>
+            <LoginView />
+          </PublicRoute>
+
+          <PrivateRoute path="/contacts">
+            <PhonebookView />
+          </PrivateRoute>
+        </Suspense>
       </Switch>
     </Container>
   );

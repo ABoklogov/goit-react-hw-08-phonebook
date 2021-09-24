@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { contactsSelectors } from 'redux/contacts';
-import { contactsOperation } from 'redux/contacts';
+import { contactsSelectors, contactsOperation } from 'redux/contacts';
+import { authSelectors } from 'redux/auth';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
@@ -11,11 +10,14 @@ import s from './PhonebookView.module.css';
 const PhonebookView = () => {
   const loading = useSelector(contactsSelectors.getLoading);
   const error = useSelector(contactsSelectors.getError);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(contactsOperation.fetchContacts());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(contactsOperation.fetchContacts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <div className={s.PhonebookView}>
