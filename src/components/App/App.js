@@ -5,6 +5,8 @@ import { authOperations, authSelectors } from 'redux/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import s from './App.module.css';
 import { Spinner } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Container from 'components/Container';
 import AppBar from 'components/AppBar';
 import PrivateRoute from 'components/PrivateRoute';
@@ -53,6 +55,7 @@ const App = () => {
           </Switch>
         </>
       )}
+      <ToastContainer />
     </Container>
   );
 };

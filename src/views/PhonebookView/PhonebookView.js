@@ -7,10 +7,11 @@ import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
 import s from './PhonebookView.module.css';
+import { toast } from 'react-toastify';
 
 const PhonebookView = () => {
   const loading = useSelector(contactsSelectors.getLoading);
-  const error = useSelector(contactsSelectors.getError);
+  const _error = useSelector(contactsSelectors.getError);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const PhonebookView = () => {
       <Filter />
       {loading && <Spinner className={s.Spinner} animation="border" />}
       {!loading && <ContactList />}
-      {error && alert(error)}
+      {_error && toast.error(_error, { theme: 'colored' })}
     </div>
   );
 };

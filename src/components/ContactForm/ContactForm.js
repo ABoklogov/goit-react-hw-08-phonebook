@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperation, contactsSelectors } from 'redux/contacts';
 import { Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {
@@ -36,10 +37,11 @@ const ContactForm = () => {
     const checkingContacts = el => el.name.toLowerCase() === name.toLowerCase();
 
     if (contacts.some(checkingContacts)) {
-      alert(`${name} is alreaby in contacts`);
+      toast.warn(`${name} is alreaby in contacts`, { theme: 'colored' });
       return;
     }
     dispatch(contactsOperation.postContact(newContact));
+    // toast.success(`Contact ${name} added`, { theme: 'colored' });
     setName('');
     setNumber('');
   };

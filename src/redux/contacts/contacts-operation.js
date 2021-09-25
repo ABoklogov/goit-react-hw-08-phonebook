@@ -26,7 +26,7 @@ export const postContact = contact => dispatch => {
   axios
     .post('/contacts', contact)
     .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => addContactError(error.message));
+    .catch(error => dispatch(addContactError(error.message)));
 };
 
 export const deletContacts = id => dispatch => {

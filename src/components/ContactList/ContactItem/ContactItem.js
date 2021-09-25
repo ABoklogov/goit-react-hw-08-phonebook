@@ -1,14 +1,21 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { contactsOperation } from 'redux/contacts';
+import { contactsOperation, contactsSelectors } from 'redux/contacts';
 import { Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
+  const error = useSelector(contactsSelectors.getError);
 
   const deleteContact = id => {
     dispatch(contactsOperation.deletContacts(id));
+
+    // if (error) {
+    //   return;
+    // }
+    // toast.success(`Contact ${name} deleted`, { theme: 'colored' });
   };
 
   return (
