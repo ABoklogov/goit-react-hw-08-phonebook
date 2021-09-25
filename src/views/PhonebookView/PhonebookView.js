@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { contactsSelectors, contactsOperation } from 'redux/contacts';
 import { authSelectors } from 'redux/auth';
+import { Spinner } from 'react-bootstrap';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
@@ -25,7 +26,7 @@ const PhonebookView = () => {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      {loading && <h1>Loading...</h1>}
+      {loading && <Spinner className={s.Spinner} animation="border" />}
       {!loading && <ContactList />}
       {error && alert(error)}
     </div>
