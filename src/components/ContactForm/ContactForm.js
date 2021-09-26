@@ -10,6 +10,9 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getContacts);
+  const isChangeListContacts = useSelector(
+    contactsSelectors.getChangeListContacts,
+  );
 
   const handleNameChenge = e => {
     const { name, value } = e.target;
@@ -41,7 +44,9 @@ const ContactForm = () => {
       return;
     }
     dispatch(contactsOperation.postContact(newContact));
-    // toast.success(`Contact ${name} added`, { theme: 'colored' });
+    if (isChangeListContacts) {
+      toast.success(`Contact ${name} added`, { theme: 'colored' });
+    }
     setName('');
     setNumber('');
   };

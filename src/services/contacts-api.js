@@ -2,15 +2,27 @@
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-// export async function fetchContacts() {
+// async function registerUser(credentials) {
+//   const { data } = await axios.post('/users/signup', credentials);
+//   return data;
+// }
+
+// async function fetchContacts() {
 //   const { data } = await axios.get('/contacts');
 //   return data;
 // }
 
-// export async function postContacts(contact) {
+// async function postContacts(contact) {
 //   await axios.post('/contacts', contact);
 // }
 
-// export async function deleteContacts(contactsId) {
+// async function deleteContacts(contactsId) {
 //   await axios.delete(`/contacts/${contactsId}`);
 // }
+// const API = {
+//   registerUser,
+//   fetchContacts,
+//   postContacts,
+//   deleteContacts,
+// };
+// export default API;

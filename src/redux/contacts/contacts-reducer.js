@@ -53,11 +53,22 @@ const error = createReducer(null, {
   [deleteContactRequest]: () => null,
 });
 
+const isChangeListContacts = createReducer(false, {
+  [addContactRequest]: () => false,
+  [addContactSuccess]: () => true,
+  [addContactError]: () => false,
+
+  [deleteContactRequest]: () => false,
+  [deleteContactSuccess]: () => true,
+  [deleteContactError]: () => false,
+});
+
 const contactsReducer = combineReducers({
   items,
   filter,
   isLoading,
   error,
+  isChangeListContacts,
 });
 
 export default contactsReducer;

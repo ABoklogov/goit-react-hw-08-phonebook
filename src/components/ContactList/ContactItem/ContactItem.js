@@ -7,15 +7,16 @@ import s from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
-  const error = useSelector(contactsSelectors.getError);
+  const isChangeListContacts = useSelector(
+    contactsSelectors.getChangeListContacts,
+  );
 
   const deleteContact = id => {
     dispatch(contactsOperation.deletContacts(id));
 
-    // if (error) {
-    //   return;
-    // }
-    // toast.success(`Contact ${name} deleted`, { theme: 'colored' });
+    if (isChangeListContacts) {
+      toast.success(`Contact ${name} deleted`, { theme: 'colored' });
+    }
   };
 
   return (
