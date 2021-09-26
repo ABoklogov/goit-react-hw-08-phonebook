@@ -12,23 +12,36 @@ async function logInUser(credentials) {
   return data;
 }
 
-// async function fetchContacts() {
-//   const { data } = await axios.get('/contacts');
-//   return data;
-// }
+async function logOutUser() {
+  axios.post('/users/logout');
+}
 
-// async function postContacts(contact) {
-//   await axios.post('/contacts', contact);
-// }
+async function fetchCurrentUser() {
+  const data = await axios.get('/users/current');
+  return data;
+}
 
-// async function deleteContacts(contactsId) {
-//   await axios.delete(`/contacts/${contactsId}`);
-// }
+async function fetchContacts() {
+  const data = await axios.get('/contacts');
+  return data;
+}
+
+async function postContacts(contact) {
+  const data = await axios.post('/contacts', contact);
+  return data;
+}
+
+async function deleteContacts(contactsId) {
+  await axios.delete(`/contacts/${contactsId}`);
+}
+
 const API = {
   registerUser,
   logInUser,
-  //   fetchContacts,
-  //   postContacts,
-  //   deleteContacts,
+  logOutUser,
+  fetchCurrentUser,
+  fetchContacts,
+  postContacts,
+  deleteContacts,
 };
 export default API;

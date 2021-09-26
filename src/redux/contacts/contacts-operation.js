@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from 'services/contacts-api';
 import {
   fetchContactRequest,
   fetchContactSuccess,
@@ -14,25 +14,29 @@ import {
 export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactRequest());
   try {
-    const { data } = await axios.get('/contacts');
+    const { data } = await API.fetchContacts();
     dispatch(fetchContactSuccess(data));
   } catch (error) {
-    fetchContactError(error.message);
+    dispatch(fetchContactError(error.message));
   }
 };
 
-export const postContact = contact => dispatch => {
+export const postContact = contact => async dispatch => {
   dispatch(addContactRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error.message)));
+  try {
+    const { data } = await API.postContacts(contact);
+    dispatch(addContactSuccess(data));
+  } catch (error) {
+    dispatch(addContactError(error.message));
+  }
 };
 
-export const deletContacts = id => dispatch => {
+export const deletContacts = id => async dispatch => {
   dispatch(deleteContactRequest());
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error.message)));
+  try {
+    await API.deleteContacts(id);
+    dispatch(deleteContactSuccess(id));
+  } catch (error) {
+    dispatch(deleteContactError(error.message));
+  }
 };

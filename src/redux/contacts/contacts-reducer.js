@@ -45,12 +45,15 @@ const isLoading = createReducer(false, {
 const error = createReducer(null, {
   [fetchContactError]: (_, { payload }) => payload,
   [fetchContactRequest]: () => null,
+  [fetchContactSuccess]: () => null,
 
   [addContactError]: (_, { payload }) => payload,
   [addContactRequest]: () => null,
+  [addContactSuccess]: () => null,
 
   [deleteContactError]: (_, { payload }) => payload,
   [deleteContactRequest]: () => null,
+  [deleteContactSuccess]: () => null,
 });
 
 const isChangeListContacts = createReducer(false, {
