@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/views/RegisterView/RegisterView.module.css"],"names":[],"mappings":"AAAA,kCACE,eAAgB,CAChB,gBAAiB,CACjB,iBACF","file":"5.c6a8145a.chunk.css","sourcesContent":[".RegisterForm {\n  max-width: 500px;\n  padding-top: 30px;\n  padding-left: 30px;\n}\n"]}

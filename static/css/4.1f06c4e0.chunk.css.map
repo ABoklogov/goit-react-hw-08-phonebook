@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/views/LoginView/LoginView.module.css"],"names":[],"mappings":"AAAA,4BACE,eAAgB,CAChB,gBAAiB,CACjB,iBACF","file":"4.1f06c4e0.chunk.css","sourcesContent":[".loginForm {\n  max-width: 500px;\n  padding-top: 30px;\n  padding-left: 30px;\n}\n"]}
