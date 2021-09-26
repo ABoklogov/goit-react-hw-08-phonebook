@@ -36,7 +36,12 @@ const App = () => {
             <Suspense
               fallback={<Spinner className={s.Spinner} animation="border" />}
             >
-              <PublicRoute exact path="/" redirectTo="/register" restricted>
+              <PublicRoute
+                exact
+                path="/goit-react-hw-08-phonebook"
+                redirectTo="/register"
+                restricted
+              >
                 <RegisterView />
               </PublicRoute>
 

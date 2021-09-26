@@ -1,14 +1,22 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from 'redux/auth';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from 'redux/auth';
+import { toast } from 'react-toastify';
 import { Form, Button } from 'react-bootstrap';
 import s from './RegisterView.module.css';
 
 const RegisterView = () => {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { theme: 'colored' });
+    }
+  }, [error]);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
