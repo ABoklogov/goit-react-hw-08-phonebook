@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperation, contactsSelectors } from 'redux/contacts';
 import { Button } from 'react-bootstrap';
@@ -13,12 +13,6 @@ const ContactForm = () => {
   const isChangeListContacts = useSelector(
     contactsSelectors.getChangeListContacts,
   );
-
-  useEffect(() => {
-    if (isChangeListContacts) {
-      toast.success(`Contact ${name} added`, { theme: 'colored' });
-    }
-  }, [isChangeListContacts, name]);
 
   const handleNameChenge = e => {
     const { name, value } = e.target;
@@ -50,7 +44,9 @@ const ContactForm = () => {
       return;
     }
     dispatch(contactsOperation.postContact(newContact));
-
+    if (isChangeListContacts) {
+      toast.success(`Contact ${name} added`, { theme: 'colored' });
+    }
     setName('');
     setNumber('');
   };

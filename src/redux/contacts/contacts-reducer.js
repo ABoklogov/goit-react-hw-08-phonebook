@@ -56,7 +56,7 @@ const error = createReducer(null, {
   [deleteContactSuccess]: () => null,
 });
 
-const isChangeListContacts = createReducer(false, {
+const isChangeListContacts = createReducer(true, {
   [addContactRequest]: () => false,
   [addContactSuccess]: () => true,
   [addContactError]: () => false,
