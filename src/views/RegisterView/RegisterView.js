@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import { toast } from 'react-toastify';
@@ -8,11 +8,16 @@ import s from './RegisterView.module.css';
 const RegisterView = () => {
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
+  const isFirstRender = useRef(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (error) {
       toast.error(error, { theme: 'colored' });
     }

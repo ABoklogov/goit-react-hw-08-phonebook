@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import { toast } from 'react-toastify';
@@ -8,10 +8,15 @@ import s from './LoginView.module.css';
 const LoginView = () => {
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
+  const isFirstRender = useRef(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (error) {
       toast.error(error, { theme: 'colored' });
     }
