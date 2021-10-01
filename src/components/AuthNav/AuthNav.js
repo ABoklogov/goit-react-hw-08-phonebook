@@ -1,14 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import s from './AuthNav.module.css';
 
 export default function AuthNav() {
+  const location = useLocation();
+
   return (
     <div>
       <NavLink
         to="/register"
         exact
-        className={s.link}
+        className={location.pathname === '/' ? s.activeHomeLink : s.link}
         activeClassName={s.activelink}
       >
         Register

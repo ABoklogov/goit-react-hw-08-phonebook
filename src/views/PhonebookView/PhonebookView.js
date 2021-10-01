@@ -23,12 +23,18 @@ const PhonebookView = () => {
 
   return (
     <div className={s.PhonebookView}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {loading && <Spinner className={s.Spinner} animation="border" />}
-      {!loading && <ContactList />}
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm />
+      </div>
+      <div className={s.contactsFilter}>
+        <h2>Contacts</h2>
+        <Filter />
+      </div>
+      <div>
+        {loading && <Spinner className={s.Spinner} animation="border" />}
+        {!loading && <ContactList />}
+      </div>
       {_error && toast.error(_error, { theme: 'colored' })}
     </div>
   );

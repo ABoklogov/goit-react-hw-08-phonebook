@@ -9,3 +9,11 @@
 .activelink {
   color: #0b6eba;
 }
+
+.activeHomeLink {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #0b6eba;
+}
