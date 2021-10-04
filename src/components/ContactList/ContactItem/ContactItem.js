@@ -21,8 +21,9 @@ const ContactItem = ({ id, name, number }) => {
 
   return (
     <>
-      <p className={s.contactName}>{name}:</p>
-      <p className={s.contactNumber}>{number}</p>
+      <p className={s.contactItem}>
+        {name}: {number}
+      </p>
       <Button className={s.contactBtn} onClick={() => deleteContact(id)}>
         delete
       </Button>

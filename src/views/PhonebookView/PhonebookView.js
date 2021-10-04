@@ -23,7 +23,7 @@ const PhonebookView = () => {
 
   return (
     <div className={s.PhonebookView}>
-      <div>
+      <div className={s.PhonebookBoxForm}>
         <h1>Phonebook</h1>
         <ContactForm />
       </div>

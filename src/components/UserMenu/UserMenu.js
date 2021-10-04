@@ -6,12 +6,12 @@ import s from './UserMenu.module.css';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const email = useSelector(authSelectors.getUseremail);
+  const name = useSelector(authSelectors.getUserName);
 
   return (
     <div className={s.container}>
       <img src={defaultAvatar} alt="" width="32" className={s.avatar} />
-      <span className={s.name}>{email}</span>
+      <span className={s.name}>{name}</span>
       <Button
         type="button"
         onClick={() => {

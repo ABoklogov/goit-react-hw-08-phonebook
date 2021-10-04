@@ -1,12 +1,10 @@
-.contactName,
-.contactNumber {
+.contactItem {
   margin-top: 0;
   margin-bottom: 0;
   line-height: center;
+  max-width: 150px;
 }
-.contactName {
-  margin-right: 10px;
-}
+
 .contactBtn {
   height: 25px;
   margin-left: auto;
