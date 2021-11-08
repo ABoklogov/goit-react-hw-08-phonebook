@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperation, contactsSelectors } from 'redux/contacts';
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import s from './ContactForm.module.css';
 
@@ -52,35 +52,70 @@ const ContactForm = () => {
   };
 
   return (
-    <form className={s.form} onSubmit={handleSubmit}>
-      <p className={s.text}>Name</p>
-      <input
-        className={s.input}
-        type="text"
-        name="name"
-        value={name}
-        onChange={handleNameChenge}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        maxLength="20"
-        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-        required
-      />
-      <p className={s.text}>Number</p>
-      <input
-        className={s.input}
-        type="tel"
-        name="number"
-        value={number}
-        onChange={handleNameChenge}
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        maxLength="20"
-        title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-        required
-      />
-      <Button className={s.btn} type="submit">
+    <Form className={s.form} onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label className={s.text}>Name</Form.Label>
+        <Form.Control
+          className={s.input}
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleNameChenge}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          maxLength="20"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicTel">
+        <Form.Label className={s.text}>Number</Form.Label>
+        <Form.Control
+          className={s.input}
+          type="tel"
+          name="number"
+          value={number}
+          onChange={handleNameChenge}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          maxLength="20"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
+        />
+      </Form.Group>
+
+      <Button className={s.btn} variant="primary" type="submit">
         Add contact
       </Button>
-    </form>
+    </Form>
+    // {/* <form className={s.form} onSubmit={handleSubmit}>
+    //   <p className={s.text}>Name</p>
+    //   <input
+    //     className={s.input}
+    //     type="text"
+    //     name="name"
+    //     value={name}
+    //     onChange={handleNameChenge}
+    //     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+    //     maxLength="20"
+    //     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+    //     required
+    //   />
+    //   <p className={s.text}>Number</p>
+    //   <input
+    //     className={s.input}
+    //     type="tel"
+    //     name="number"
+    //     value={number}
+    //     onChange={handleNameChenge}
+    //     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+    //     maxLength="20"
+    //     title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+    //     required
+    //   />
+    //   <Button className={s.btn} type="submit">
+    //     Add contact
+    //   </Button>
+    // </form> */}
   );
 };
 
