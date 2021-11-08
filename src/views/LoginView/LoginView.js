@@ -62,6 +62,12 @@ const LoginView = () => {
           placeholder="Password"
           onChange={handleChange}
         />
+        <Form.Check
+          className={s.check}
+          type="switch"
+          id="custom-switch"
+          label="Show password"
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit">

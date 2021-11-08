@@ -80,6 +80,12 @@ const RegisterView = () => {
           onChange={handleChange}
           placeholder="Password"
         />
+        <Form.Check
+          className={s.check}
+          type="switch"
+          id="custom-switch"
+          label="Show password"
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit">
