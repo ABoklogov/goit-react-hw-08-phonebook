@@ -23,6 +23,8 @@ export default function AuthNav() {
       >
         Login
       </NavLink>
+
+      <h1 className={s.title}>Welcome to the PhoneBook app</h1>
     </div>
   );
 }

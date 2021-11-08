@@ -21,3 +21,12 @@
   font-weight: 700;
   color: #0d6efd;
 }
+
+.title {
+  display: inline-block;
+  font-size: 25px;
+  font-weight: 500;
+  color: #b6270d;
+  margin-bottom: 0;
+  padding-left: 12px;
+}
