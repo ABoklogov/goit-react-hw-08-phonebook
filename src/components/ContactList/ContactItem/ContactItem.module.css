@@ -4,9 +4,20 @@
   line-height: center;
 }
 
-.contactBtn {
-  height: 25px;
+.dropdown {
+  margin-top: auto;
+  margin-bottom: auto;
   margin-left: auto;
-  cursor: pointer;
-  line-height: 6px;
+}
+
+.dropdownToggle {
+  background-color: rgb(209, 205, 205);
+}
+
+.dropdownDelete:hover {
+  background-color: rgb(208, 158, 158);
+}
+
+.dropdownChange:hover {
+  background-color: rgb(225, 232, 166);
 }

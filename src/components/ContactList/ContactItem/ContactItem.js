@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { contactsOperation, contactsSelectors } from 'redux/contacts';
-import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import { Dropdown } from 'react-bootstrap';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number }) => {
@@ -24,9 +24,25 @@ const ContactItem = ({ id, name, number }) => {
       <p className={s.contactItem}>
         {name}: {number}
       </p>
-      <Button className={s.contactBtn} onClick={() => deleteContact(id)}>
-        delete
-      </Button>
+
+      <Dropdown className={s.dropdown}>
+        <Dropdown.Toggle
+          className={s.dropdownToggle}
+          variant="Secondary"
+        ></Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item className={s.dropdownChange} onClick={() => {}}>
+            change
+          </Dropdown.Item>
+          <Dropdown.Item
+            className={s.dropdownDelete}
+            onClick={() => deleteContact(id)}
+          >
+            delete
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </>
   );
 };

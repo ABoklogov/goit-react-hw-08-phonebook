@@ -12,6 +12,7 @@ const RegisterView = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [typeInput, setTypeInput] = useState('password');
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -44,6 +45,17 @@ const RegisterView = () => {
     setPassword('');
   };
 
+  const togglePasswordVisibility = () => {
+    switch (typeInput) {
+      case 'password':
+        return setTypeInput('text');
+      case 'text':
+        return setTypeInput('password');
+      default:
+        return;
+    }
+  };
+
   return (
     <Form className={s.RegisterForm} onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
@@ -74,7 +86,7 @@ const RegisterView = () => {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
-          type="password"
+          type={typeInput}
           name="password"
           value={password}
           onChange={handleChange}
@@ -85,6 +97,7 @@ const RegisterView = () => {
           type="switch"
           id="custom-switch"
           label="Show password"
+          onClick={togglePasswordVisibility}
         />
       </Form.Group>
 

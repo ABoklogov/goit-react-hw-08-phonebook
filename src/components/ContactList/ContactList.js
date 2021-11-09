@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { contactsSelectors } from 'redux/contacts';
+import { ListGroup } from 'react-bootstrap';
 import s from './ContactList.module.css';
 import ContactItem from './ContactItem';
 
@@ -7,13 +8,13 @@ const ContactList = () => {
   const visibleContacts = useSelector(contactsSelectors.getVisibleContacts);
 
   return (
-    <ul className={s.contactList}>
+    <ListGroup className={s.contactList} variant="flush">
       {visibleContacts?.map(({ id, name, number }) => (
-        <li key={id} className={s.contact}>
+        <ListGroup.Item key={id} className={s.contact}>
           <ContactItem id={id} name={name} number={number} />
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 };
 

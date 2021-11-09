@@ -11,6 +11,7 @@ const LoginView = () => {
   const isFirstRender = useRef(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [typeInput, setTypeInput] = useState('password');
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -40,6 +41,17 @@ const LoginView = () => {
     setPassword('');
   };
 
+  const togglePasswordVisibility = () => {
+    switch (typeInput) {
+      case 'password':
+        return setTypeInput('text');
+      case 'text':
+        return setTypeInput('password');
+      default:
+        return;
+    }
+  };
+
   return (
     <Form className={s.loginForm} onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -56,7 +68,7 @@ const LoginView = () => {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
-          type="password"
+          type={typeInput}
           name="password"
           value={password}
           placeholder="Password"
@@ -67,6 +79,7 @@ const LoginView = () => {
           type="switch"
           id="custom-switch"
           label="Show password"
+          onClick={togglePasswordVisibility}
         />
       </Form.Group>
 
