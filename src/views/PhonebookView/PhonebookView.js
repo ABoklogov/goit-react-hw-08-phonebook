@@ -6,6 +6,7 @@ import { Spinner } from 'react-bootstrap';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
+import ModalContact from 'components/ModalContact';
 import s from './PhonebookView.module.css';
 import { toast } from 'react-toastify';
 
@@ -23,18 +24,23 @@ const PhonebookView = () => {
 
   return (
     <div className={s.PhonebookView}>
+      <ModalContact />
+
       <div className={s.PhonebookBoxForm}>
         <h1>Phonebook</h1>
         <ContactForm />
       </div>
+
       <div className={s.contactsFilter}>
         <h2>Contacts</h2>
         <Filter />
       </div>
+
       <div>
         {loading && <Spinner className={s.Spinner} animation="border" />}
         {!loading && <ContactList />}
       </div>
+
       {_error && toast.error(_error, { theme: 'colored' })}
     </div>
   );

@@ -1,7 +1,7 @@
 .contactItem {
-  margin-top: 0;
+  display: flex;
   margin-bottom: 0;
-  line-height: center;
+  align-items: center;
 }
 
 .dropdown {

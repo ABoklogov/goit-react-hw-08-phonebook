@@ -12,6 +12,8 @@ import {
   deleteContactError,
   setContacts,
   chengeFilter,
+  modalOpen,
+  modalClose,
 } from './contacts-action';
 
 const items = createReducer([], {
@@ -66,12 +68,18 @@ const isChangeListContacts = createReducer(true, {
   [deleteContactError]: () => false,
 });
 
+const isModalOpen = createReducer(false, {
+  [modalOpen]: () => true,
+  [modalClose]: () => false,
+});
+
 const contactsReducer = combineReducers({
   items,
   filter,
   isLoading,
   error,
   isChangeListContacts,
+  isModalOpen,
 });
 
 export default contactsReducer;

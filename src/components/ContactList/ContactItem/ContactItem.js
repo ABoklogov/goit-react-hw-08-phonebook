@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { contactsOperation, contactsSelectors } from 'redux/contacts';
+import {
+  contactsOperation,
+  contactsSelectors,
+  contactsAction,
+} from 'redux/contacts';
 import { toast } from 'react-toastify';
 import { Dropdown } from 'react-bootstrap';
 import s from './ContactItem.module.css';
@@ -10,12 +14,21 @@ const ContactItem = ({ id, name, number }) => {
   const isChangeListContacts = useSelector(
     contactsSelectors.getChangeListContacts,
   );
+  const isModalOpen = useSelector(contactsSelectors.isModalOpen);
 
   const deleteContact = id => {
     dispatch(contactsOperation.deletContacts(id));
 
     if (isChangeListContacts) {
       toast.success(`Contact ${name} deleted`, { theme: 'colored' });
+    }
+  };
+
+  const controlModal = () => {
+    if (!isModalOpen) {
+      dispatch(contactsAction.modalOpen());
+    } else {
+      dispatch(contactsAction.modalClose());
     }
   };
 
@@ -32,7 +45,7 @@ const ContactItem = ({ id, name, number }) => {
         ></Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item className={s.dropdownChange} onClick={() => {}}>
+          <Dropdown.Item className={s.dropdownChange} onClick={controlModal}>
             change
           </Dropdown.Item>
           <Dropdown.Item

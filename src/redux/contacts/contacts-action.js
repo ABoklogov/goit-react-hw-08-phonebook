@@ -21,3 +21,6 @@ export const setContacts = createAction('contacts/Set');
 export const chengeFilter = createAction('contacts/Filter', e => ({
   payload: e.target.value,
 }));
+
+export const modalOpen = createAction('contacts/modalOpen');
+export const modalClose = createAction('contacts/modalClose');
