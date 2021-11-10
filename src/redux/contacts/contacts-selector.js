@@ -23,3 +23,5 @@ export const getVisibleContacts = createSelector(
 );
 
 export const isModalOpen = state => state.contacts.isModalOpen;
+
+export const changedContact = state => state.contacts.changedContact;

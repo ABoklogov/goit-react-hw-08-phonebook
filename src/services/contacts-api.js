@@ -35,6 +35,10 @@ async function deleteContacts(contactsId) {
   await axios.delete(`/contacts/${contactsId}`);
 }
 
+async function changeContact(contactsId) {
+  await axios.patch(`/contacts/${contactsId}`);
+}
+
 const API = {
   registerUser,
   logInUser,
@@ -43,5 +47,6 @@ const API = {
   fetchContacts,
   postContacts,
   deleteContacts,
+  changeContact,
 };
 export default API;

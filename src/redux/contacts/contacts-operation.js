@@ -9,6 +9,9 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+  changeContactRequest,
+  changeContactSuccess,
+  changeContactError,
 } from './contacts-action';
 
 export const fetchContacts = () => async dispatch => {
@@ -38,5 +41,16 @@ export const deletContacts = id => async dispatch => {
     dispatch(deleteContactSuccess(id));
   } catch (error) {
     dispatch(deleteContactError(error.message));
+  }
+};
+
+export const changeContact = newContact => async dispatch => {
+  dispatch(changeContactRequest());
+  try {
+    console.log(newContact);
+    const contact = await API.changeContact(newContact);
+    dispatch(changeContactSuccess(contact.id, contact));
+  } catch (error) {
+    dispatch(changeContactError(error.message));
   }
 };

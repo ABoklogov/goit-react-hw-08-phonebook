@@ -24,3 +24,12 @@ export const chengeFilter = createAction('contacts/Filter', e => ({
 
 export const modalOpen = createAction('contacts/modalOpen');
 export const modalClose = createAction('contacts/modalClose');
+
+export const changeContactRequest = createAction(
+  'contact/changeContactRequest',
+);
+export const changeContactSuccess = createAction(
+  'contact/changeContactSuccess',
+);
+export const changeContactError = createAction('contact/changeContactError');
+export const changeContact = createAction('contact/changeContact');

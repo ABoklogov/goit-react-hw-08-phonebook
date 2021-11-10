@@ -27,6 +27,7 @@ const ContactItem = ({ id, name, number }) => {
   const controlModal = () => {
     if (!isModalOpen) {
       dispatch(contactsAction.modalOpen());
+      dispatch(contactsAction.changeContact({ id, name, number }));
     } else {
       dispatch(contactsAction.modalClose());
     }

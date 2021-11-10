@@ -14,14 +14,24 @@ import {
   chengeFilter,
   modalOpen,
   modalClose,
+  changeContact,
+  changeContactRequest,
+  changeContactSuccess,
+  changeContactError,
 } from './contacts-action';
 
 const items = createReducer([], {
   [fetchContactSuccess]: (_, { payload }) => payload,
+
   [addContactSuccess]: (state, { payload }) => [...state, payload],
 
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
+
+  [changeContactSuccess]: (state, { id, contact }) => {
+    state.filter(contact => contact.id !== id);
+    return [...state, contact];
+  },
 
   [setContacts]: (_, { payload }) => [...payload],
 });
@@ -42,6 +52,10 @@ const isLoading = createReducer(false, {
   [deleteContactRequest]: () => true,
   [deleteContactSuccess]: () => false,
   [deleteContactError]: () => false,
+
+  [changeContactRequest]: () => true,
+  [changeContactSuccess]: () => false,
+  [changeContactError]: () => false,
 });
 
 const error = createReducer(null, {
@@ -56,6 +70,10 @@ const error = createReducer(null, {
   [deleteContactError]: (_, { payload }) => payload,
   [deleteContactRequest]: () => null,
   [deleteContactSuccess]: () => null,
+
+  [changeContactRequest]: (_, { payload }) => payload,
+  [changeContactSuccess]: () => null,
+  [changeContactError]: () => null,
 });
 
 const isChangeListContacts = createReducer(true, {
@@ -66,12 +84,23 @@ const isChangeListContacts = createReducer(true, {
   [deleteContactRequest]: () => false,
   [deleteContactSuccess]: () => true,
   [deleteContactError]: () => false,
+
+  [changeContactRequest]: () => false,
+  [changeContactSuccess]: () => true,
+  [changeContactError]: () => false,
 });
 
 const isModalOpen = createReducer(false, {
   [modalOpen]: () => true,
   [modalClose]: () => false,
 });
+
+const changedContact = createReducer(
+  {},
+  {
+    [changeContact]: (state, { payload }) => ({ ...state, ...payload }),
+  },
+);
 
 const contactsReducer = combineReducers({
   items,
@@ -80,6 +109,7 @@ const contactsReducer = combineReducers({
   error,
   isChangeListContacts,
   isModalOpen,
+  changedContact,
 });
 
 export default contactsReducer;
