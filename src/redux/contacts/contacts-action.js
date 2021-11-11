@@ -32,4 +32,5 @@ export const changeContactSuccess = createAction(
   'contact/changeContactSuccess',
 );
 export const changeContactError = createAction('contact/changeContactError');
+
 export const changeContact = createAction('contact/changeContact');

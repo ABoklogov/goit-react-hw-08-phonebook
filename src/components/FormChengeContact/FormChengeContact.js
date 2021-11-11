@@ -6,11 +6,16 @@ import {
   contactsAction,
 } from 'redux/contacts';
 import { FloatingLabel, Form, Modal, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const FormChengeContact = () => {
   const dispatch = useDispatch();
   const changeContact = useSelector(contactsSelectors.changedContact);
   const isModalOpen = useSelector(contactsSelectors.isModalOpen);
+  const contacts = useSelector(contactsSelectors.getContacts);
+  const isChangeListContacts = useSelector(
+    contactsSelectors.getChangeListContacts,
+  );
   const [name, setName] = useState(changeContact.name);
   const [number, setNumber] = useState(changeContact.number);
 
@@ -38,6 +43,14 @@ const FormChengeContact = () => {
       number,
     };
 
+    const checkingContacts = el =>
+      el?.name.toLowerCase() === name.toLowerCase();
+
+    if (contacts.some(checkingContacts)) {
+      toast.warn(`${name} is alreaby in contacts`, { theme: 'colored' });
+      return;
+    }
+
     dispatch(contactsOperation.changeContact(changeContact.id, newContact));
 
     if (!isModalOpen) {
@@ -45,8 +58,12 @@ const FormChengeContact = () => {
     } else {
       dispatch(contactsAction.modalClose());
     }
+    if (isChangeListContacts) {
+      toast.success(`Contact ${name} changed`, { theme: 'colored' });
+    }
     setName('');
     setNumber('');
+    dispatch(contactsAction.changeContact({}));
   };
 
   return (
@@ -58,6 +75,10 @@ const FormChengeContact = () => {
           placeholder="Name"
           value={name}
           onChange={handleNameChenge}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          maxLength="20"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
         />
       </FloatingLabel>
 
@@ -68,6 +89,10 @@ const FormChengeContact = () => {
           placeholder="Phone"
           value={number}
           onChange={handleNameChenge}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          maxLength="20"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
         />
       </FloatingLabel>
       <Modal.Footer>

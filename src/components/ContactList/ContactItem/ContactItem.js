@@ -35,9 +35,16 @@ const ContactItem = ({ id, name, number }) => {
 
   return (
     <>
-      <p className={s.contactItem}>
-        {name}: {number}
-      </p>
+      <div className={s.contactItem}>
+        <span>
+          <p className={s.contactSubItem}>Name:</p>
+          <p className={s.contactName}>{name}</p>
+        </span>
+        <span>
+          <p className={s.contactSubItem}>Number:</p>
+          <p className={s.contactTel}>{number}</p>
+        </span>
+      </div>
 
       <Dropdown className={s.dropdown}>
         <Dropdown.Toggle

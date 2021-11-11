@@ -1,7 +1,31 @@
 .contactItem {
   display: flex;
   margin-bottom: 0;
-  align-items: center;
+  flex-direction: column;
+}
+
+.contactItem span {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.contactItem p {
+  margin-bottom: 0;
+}
+
+.contactSubItem {
+  font-size: 11px;
+  font-style: italic;
+  margin-right: 5px;
+  height: 18px;
+}
+
+.contactName {
+  font-weight: 600;
+}
+
+.contactTel {
+  color: rgb(70, 68, 68);
 }
 
 .dropdown {
@@ -15,9 +39,9 @@
 }
 
 .dropdownDelete:hover {
-  background-color: rgb(208, 158, 158);
+  background-color: rgb(214, 100, 100);
 }
 
 .dropdownChange:hover {
-  background-color: rgb(225, 232, 166);
+  background-color: rgb(225, 242, 78);
 }

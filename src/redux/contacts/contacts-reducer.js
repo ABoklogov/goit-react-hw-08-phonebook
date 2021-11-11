@@ -101,7 +101,7 @@ const isModalOpen = createReducer(false, {
 const changedContact = createReducer(
   {},
   {
-    [changeContact]: (state, { payload }) => ({ ...state, ...payload }),
+    [changeContact]: (_, { payload }) => ({ ...payload }),
   },
 );
 
