@@ -35,8 +35,9 @@ async function deleteContacts(contactsId) {
   await axios.delete(`/contacts/${contactsId}`);
 }
 
-async function changeContact(contactsId) {
-  await axios.patch(`/contacts/${contactsId}`);
+async function changeContact(contactsId, contact) {
+  const data = await axios.patch(`/contacts/${contactsId}`, contact);
+  return data;
 }
 
 const API = {

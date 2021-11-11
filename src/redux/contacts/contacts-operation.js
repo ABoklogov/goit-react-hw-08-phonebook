@@ -44,12 +44,11 @@ export const deletContacts = id => async dispatch => {
   }
 };
 
-export const changeContact = newContact => async dispatch => {
+export const changeContact = (id, newContact) => async dispatch => {
   dispatch(changeContactRequest());
   try {
-    console.log(newContact);
-    const contact = await API.changeContact(newContact);
-    dispatch(changeContactSuccess(contact.id, contact));
+    const { data } = await API.changeContact(id, newContact);
+    dispatch(changeContactSuccess(data));
   } catch (error) {
     dispatch(changeContactError(error.message));
   }

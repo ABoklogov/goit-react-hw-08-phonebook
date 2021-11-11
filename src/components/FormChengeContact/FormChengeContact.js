@@ -38,7 +38,7 @@ const FormChengeContact = () => {
       number,
     };
 
-    dispatch(contactsOperation.changeContact(newContact));
+    dispatch(contactsOperation.changeContact(changeContact.id, newContact));
 
     if (!isModalOpen) {
       dispatch(contactsAction.modalOpen());

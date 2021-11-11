@@ -37,7 +37,8 @@ const ContactForm = () => {
       name,
       number,
     };
-    const checkingContacts = el => el.name.toLowerCase() === name.toLowerCase();
+    const checkingContacts = el =>
+      el?.name.toLowerCase() === name.toLowerCase();
 
     if (contacts.some(checkingContacts)) {
       toast.warn(`${name} is alreaby in contacts`, { theme: 'colored' });

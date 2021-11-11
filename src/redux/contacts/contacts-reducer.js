@@ -28,9 +28,12 @@ const items = createReducer([], {
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
 
-  [changeContactSuccess]: (state, { id, contact }) => {
-    state.filter(contact => contact.id !== id);
-    return [...state, contact];
+  [changeContactSuccess]: (state, { payload }) => {
+    const idx = state.findIndex(item => item.id === payload.id);
+    if (idx === -1) {
+      return;
+    }
+    state.splice(idx, 1, payload);
   },
 
   [setContacts]: (_, { payload }) => [...payload],
