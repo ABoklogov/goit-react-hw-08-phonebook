@@ -46,7 +46,11 @@ const FormChengeContact = () => {
     const checkingContacts = el =>
       el?.name.toLowerCase() === name.toLowerCase();
 
-    if (contacts.some(checkingContacts)) {
+    if (changeContact.name === name && changeContact.number === number) {
+      toast.warn('Change at least one field', { theme: 'colored' });
+      return;
+    }
+    if (contacts.some(checkingContacts) && changeContact.number === number) {
       toast.warn(`${name} is alreaby in contacts`, { theme: 'colored' });
       return;
     }
